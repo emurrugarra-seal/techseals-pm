@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "TechSeals PM",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "actions": "Actions",
+    "active": "Active",
+    "inactive": "Inactive",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "signOut": "Sign out",
+    "language": "Language"
+  },
+  "auth": {
+    "loginTitle": "Sign in to TechSeals PM",
+    "loginSubtitle": "Manage projects, consultants, and capacity",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "invalidCredentials": "Invalid email or password",
+    "loginError": "Something went wrong. Please try again."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "consultants": "Consultants",
+    "projects": "Projects",
+    "assignments": "Assignments",
+    "myProjects": "My Projects"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "endingSoon": "Projects ending soon",
+    "overCapacity": "Consultants over capacity",
+    "unassignedProjects": "Active projects without consultants",
+    "noEndingSoon": "No projects ending in the next 90 days",
+    "noOverCapacity": "All consultants within capacity",
+    "noUnassigned": "All active projects have consultants"
+  },
+  "clients": {
+    "title": "Clients",
+    "subtitle": "Manage your client portfolio",
+    "addClient": "Add client",
+    "comingSoon": "Client management coming in the next iteration."
+  },
+  "consultants": {
+    "title": "Consultants",
+    "subtitle": "Manage consultant accounts and capacity",
+    "addConsultant": "Add consultant",
+    "jobRole": "Job role",
+    "seniority": "Seniority",
+    "weeklyCapacity": "Weekly capacity (hours)",
+    "createTitle": "Create consultant",
+    "createSubtitle": "Create an account with email and password",
+    "creating": "Creating...",
+    "createSuccess": "Consultant created successfully",
+    "createError": "Failed to create consultant",
+    "noConsultants": "No consultants yet",
+    "roles": {
+      "consultant": "Consultant",
+      "technical_lead": "Technical Lead",
+      "solution_architect": "Solution Architect",
+      "project_manager": "Project Manager",
+      "business_analyst": "Business Analyst"
+    },
+    "seniorities": {
+      "junior": "Junior",
+      "medior": "Medior",
+      "senior": "Senior",
+      "lead": "Lead",
+      "principal": "Principal"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Track project timelines and status",
+    "addProject": "Add project",
+    "comingSoon": "Project management coming in the next iteration."
+  },
+  "assignments": {
+    "title": "Assignments",
+    "subtitle": "Plan consultant allocations across projects",
+    "assignTab": "Assign",
+    "capacityTab": "Capacity",
+    "comingSoon": "Assignment matrix coming in the next iteration."
+  },
+  "consultantPortal": {
+    "title": "My Projects",
+    "subtitle": "Your current project assignments",
+    "noProjects": "You have no active project assignments",
+    "client": "Client",
+    "hoursPerWeek": "Hours / week",
+    "period": "Period",
+    "status": "Status",
+    "priority": "Priority"
+  }
+}

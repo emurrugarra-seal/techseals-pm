@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "TechSeals PM",
+    "loading": "Laden...",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "create": "Aanmaken",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "actions": "Acties",
+    "active": "Actief",
+    "inactive": "Inactief",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "name": "Naam",
+    "signOut": "Uitloggen",
+    "language": "Taal"
+  },
+  "auth": {
+    "loginTitle": "Inloggen bij TechSeals PM",
+    "loginSubtitle": "Beheer projecten, consultants en capaciteit",
+    "signIn": "Inloggen",
+    "signingIn": "Bezig met inloggen...",
+    "invalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+    "loginError": "Er is iets misgegaan. Probeer het opnieuw."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "clients": "Klanten",
+    "consultants": "Consultants",
+    "projects": "Projecten",
+    "assignments": "Toewijzingen",
+    "myProjects": "Mijn projecten"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "endingSoon": "Projecten die binnenkort eindigen",
+    "overCapacity": "Consultants boven capaciteit",
+    "unassignedProjects": "Actieve projecten zonder consultants",
+    "noEndingSoon": "Geen projecten die binnen 90 dagen eindigen",
+    "noOverCapacity": "Alle consultants binnen capaciteit",
+    "noUnassigned": "Alle actieve projecten hebben consultants"
+  },
+  "clients": {
+    "title": "Klanten",
+    "subtitle": "Beheer uw klantenportfolio",
+    "addClient": "Klant toevoegen",
+    "comingSoon": "Klantenbeheer komt in de volgende iteratie."
+  },
+  "consultants": {
+    "title": "Consultants",
+    "subtitle": "Beheer consultantaccounts en capaciteit",
+    "addConsultant": "Consultant toevoegen",
+    "jobRole": "Functie",
+    "seniority": "Senioriteit",
+    "weeklyCapacity": "Wekelijkse capaciteit (uren)",
+    "createTitle": "Consultant aanmaken",
+    "createSubtitle": "Maak een account aan met e-mail en wachtwoord",
+    "creating": "Bezig met aanmaken...",
+    "createSuccess": "Consultant succesvol aangemaakt",
+    "createError": "Consultant aanmaken mislukt",
+    "noConsultants": "Nog geen consultants",
+    "roles": {
+      "consultant": "Consultant",
+      "technical_lead": "Technisch Lead",
+      "solution_architect": "Solution Architect",
+      "project_manager": "Projectmanager",
+      "business_analyst": "Business Analist"
+    },
+    "seniorities": {
+      "junior": "Junior",
+      "medior": "Medior",
+      "senior": "Senior",
+      "lead": "Lead",
+      "principal": "Principal"
+    }
+  },
+  "projects": {
+    "title": "Projecten",
+    "subtitle": "Volg projecttijdlijnen en status",
+    "addProject": "Project toevoegen",
+    "comingSoon": "Projectbeheer komt in de volgende iteratie."
+  },
+  "assignments": {
+    "title": "Toewijzingen",
+    "subtitle": "Plan consultanttoewijzingen over projecten",
+    "assignTab": "Toewijzen",
+    "capacityTab": "Capaciteit",
+    "comingSoon": "Toewijzingsmatrix komt in de volgende iteratie."
+  },
+  "consultantPortal": {
+    "title": "Mijn projecten",
+    "subtitle": "Uw huidige projecttoewijzingen",
+    "noProjects": "U heeft geen actieve projecttoewijzingen",
+    "client": "Klant",
+    "hoursPerWeek": "Uren / week",
+    "period": "Periode",
+    "status": "Status",
+    "priority": "Prioriteit"
+  }
+}

@@ -1,0 +1,15 @@
+# Settings for Cloud Run — see https://cloud.google.com/run/docs/reference/rest/v1/Container#resources
+runConfig:
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+# Environment variables — use Firebase Console secrets for FIREBASE_SERVICE_ACCOUNT_KEY in production
+env:
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: techseals-pm
+    availability:
+      - BUILD
+      - RUNTIME
