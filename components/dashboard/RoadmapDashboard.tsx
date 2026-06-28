@@ -4,10 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { CapacityMatrix } from "@/components/assignments/CapacityMatrix";
 import { GanttBar, GanttTrack, TimelineHeader } from "@/components/dashboard/GanttBar";
 import {
   consultantWeeklyHoursInRange,
   formatDisplayDate,
+  getYearMonths,
   todayIso,
 } from "@/lib/assignments/capacity";
 import {
@@ -79,6 +81,10 @@ export function RoadmapDashboard() {
   const range = useMemo(() => getDefaultTimelineRange(), []);
   const monthMarkers = useMemo(() => getMonthMarkers(range), [range]);
   const todayLeft = useMemo(() => getTodayMarkerLeft(range), [range]);
+  const capacityMonths = useMemo(
+    () => getYearMonths(range.startDate.getFullYear()),
+    [range],
+  );
   const today = todayIso();
 
   const clientMap = useMemo(
@@ -353,6 +359,21 @@ export function RoadmapDashboard() {
             )}
           </div>
         </div>
+      </section>
+
+      {/* Monthly capacity */}
+      <section className="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <div className="border-b border-zinc-200 px-4 py-3">
+          <h2 className="font-semibold text-zinc-900">{t("capacityMatrix")}</h2>
+          <p className="text-sm text-zinc-500">{t("capacityMatrixHint")}</p>
+        </div>
+
+        <CapacityMatrix
+          consultants={consultants}
+          assignments={assignments}
+          months={capacityMonths}
+          embedded
+        />
       </section>
     </div>
   );

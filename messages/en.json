@@ -54,6 +54,8 @@
     "projectsRoadmapHint": "Sorted by end date — earliest first. Bars show project timeline.",
     "consultantsRoadmap": "Consultants",
     "consultantsRoadmapHint": "Sorted by who becomes available first. Bars show mission segments.",
+    "capacityMatrix": "Capacity",
+    "capacityMatrixHint": "Average weekly hours assigned per month. Colors compare to each consultant's capacity.",
     "colWork": "Work",
     "colAssignees": "Assignees",
     "colEnds": "Ends",

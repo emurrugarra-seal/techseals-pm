@@ -24,8 +24,8 @@ export interface TimelineSegment {
 
 export function getDefaultTimelineRange(): TimelineRange {
   const now = new Date();
-  const startDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-  const endDate = new Date(now.getFullYear(), now.getMonth() + 4, 0);
+  const startDate = new Date(now.getFullYear(), 0, 1);
+  const endDate = new Date(now.getFullYear(), 11, 31);
   const start = formatDate(startDate);
   const end = formatDate(endDate);
   const totalDays =

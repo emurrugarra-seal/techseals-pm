@@ -54,6 +54,8 @@
     "projectsRoadmapHint": "Gesorteerd op einddatum — eerst aflopend. Balken tonen de projecttijdlijn.",
     "consultantsRoadmap": "Consultants",
     "consultantsRoadmapHint": "Gesorteerd op wie het eerst beschikbaar is. Balken tonen missiesegmenten.",
+    "capacityMatrix": "Capaciteit",
+    "capacityMatrixHint": "Gemiddelde wekelijkse uren per maand. Kleuren vergelijken met de capaciteit van elke consultant.",
     "colWork": "Werk",
     "colAssignees": "Toegewezen",
     "colEnds": "Eindigt",

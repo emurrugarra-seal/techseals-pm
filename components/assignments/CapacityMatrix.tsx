@@ -7,21 +7,29 @@ import {
   consultantWeeklyHoursInRange,
   getMonthRange,
   getUpcomingMonths,
+  type MonthColumn,
 } from "@/lib/assignments/capacity";
 import type { Assignment, Consultant } from "@/lib/types";
 
 interface CapacityMatrixProps {
   consultants: Consultant[];
   assignments: Assignment[];
+  months?: MonthColumn[];
+  embedded?: boolean;
 }
 
 export function CapacityMatrix({
   consultants,
   assignments,
+  months: monthsProp,
+  embedded = false,
 }: CapacityMatrixProps) {
   const t = useTranslations("assignments");
 
-  const months = useMemo(() => getUpcomingMonths(6), []);
+  const months = useMemo(
+    () => monthsProp ?? getUpcomingMonths(6),
+    [monthsProp],
+  );
 
   const activeConsultants = useMemo(
     () => consultants.filter((c) => c.active),
@@ -30,17 +38,34 @@ export function CapacityMatrix({
 
   if (activeConsultants.length === 0) {
     return (
-      <p className="mt-6 rounded-lg border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-500">
+      <p
+        className={
+          embedded
+            ? "px-4 py-8 text-sm text-zinc-500"
+            : "mt-6 rounded-lg border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-500"
+        }
+      >
         {t("capacityEmpty")}
       </p>
     );
   }
 
+  const hintClass = embedded ? "px-4 pt-4 text-sm text-zinc-600" : "mt-4 text-sm text-zinc-600";
+  const legendClass = embedded
+    ? "px-4 pt-4 flex flex-wrap gap-3 text-xs text-zinc-600"
+    : "mt-4 flex flex-wrap gap-3 text-xs text-zinc-600";
+  const tableWrapClass = embedded
+    ? "mt-3 overflow-x-auto px-4"
+    : "mt-4 overflow-x-auto rounded-lg border border-zinc-200 bg-white";
+  const footnoteClass = embedded
+    ? "px-4 pb-4 pt-2 text-xs text-zinc-500"
+    : "mt-2 text-xs text-zinc-500";
+
   return (
     <>
-      <p className="mt-4 text-sm text-zinc-600">{t("capacityHint")}</p>
+      {!embedded && <p className={hintClass}>{t("capacityHint")}</p>}
 
-      <div className="mt-4 flex flex-wrap gap-3 text-xs text-zinc-600">
+      <div className={legendClass}>
         <span className="flex items-center gap-1">
           <span className="inline-block h-3 w-3 rounded bg-green-50 border border-green-200" />
           {t("underCapacity")}
@@ -55,8 +80,12 @@ export function CapacityMatrix({
         </span>
       </div>
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
-        <table className="min-w-full text-sm">
+      <div className={tableWrapClass}>
+        <table
+          className={`min-w-full text-sm ${
+            embedded ? "rounded-lg border border-zinc-200" : ""
+          }`}
+        >
           <thead className="bg-zinc-50 text-left text-zinc-600">
             <tr>
               <th className="sticky left-0 z-10 bg-zinc-50 px-4 py-3 font-medium min-w-[160px]">
@@ -105,7 +134,7 @@ export function CapacityMatrix({
         </table>
       </div>
 
-      <p className="mt-2 text-xs text-zinc-500">{t("capacityFootnote")}</p>
+      <p className={footnoteClass}>{t("capacityFootnote")}</p>
     </>
   );
 }

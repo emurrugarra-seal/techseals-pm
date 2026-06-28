@@ -134,7 +134,13 @@ export function getMonthRange(year: number, month: number): {
   return { start: formatDate(start), end: formatDate(end) };
 }
 
-export function getUpcomingMonths(count: number): { year: number; month: number; label: string }[] {
+export interface MonthColumn {
+  year: number;
+  month: number;
+  label: string;
+}
+
+export function getUpcomingMonths(count: number): MonthColumn[] {
   const result: { year: number; month: number; label: string }[] = [];
   const now = new Date();
 
@@ -144,6 +150,23 @@ export function getUpcomingMonths(count: number): { year: number; month: number;
       year: date.getFullYear(),
       month: date.getMonth() + 1,
       label: date.toLocaleDateString("en", { month: "short", year: "numeric" }),
+    });
+  }
+
+  return result;
+}
+
+export function getYearMonths(
+  year: number = new Date().getFullYear(),
+): MonthColumn[] {
+  const result: { year: number; month: number; label: string }[] = [];
+
+  for (let month = 1; month <= 12; month++) {
+    const date = new Date(year, month - 1, 1);
+    result.push({
+      year,
+      month,
+      label: date.toLocaleDateString("en", { month: "short" }),
     });
   }
 
