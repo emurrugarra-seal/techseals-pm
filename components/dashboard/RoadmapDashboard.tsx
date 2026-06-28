@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { GanttBar, GanttTrack, TimelineHeader } from "@/components/dashboard/GanttBar";
 import {
   consultantWeeklyHoursInRange,
+  formatDisplayDate,
   todayIso,
 } from "@/lib/assignments/capacity";
 import {
@@ -171,14 +172,14 @@ export function RoadmapDashboard() {
               <div className="w-[280px] shrink-0 px-4 py-2">{t("colWork")}</div>
               <div className="w-[100px] shrink-0 px-2 py-2">{tCommon("status")}</div>
               <div className="w-[100px] shrink-0 px-2 py-2">{t("colAssignees")}</div>
-              <div className="w-[90px] shrink-0 px-2 py-2">{t("colEnds")}</div>
+              <div className="w-[100px] shrink-0 px-2 py-2">{t("colEnds")}</div>
               <TimelineHeader monthMarkers={monthMarkers} todayLeft={todayLeft} />
             </div>
 
             {roadmapProjects.length === 0 ? (
               <div className="px-4 py-8 text-sm text-zinc-500">
                 {t("noProjects")}{" "}
-                <Link href="/admin/projects/new" className="underline text-zinc-700">
+                <Link href="/admin/operations/projects/new" className="underline text-zinc-700">
                   {t("addProjectLink")}
                 </Link>
               </div>
@@ -198,7 +199,7 @@ export function RoadmapDashboard() {
                     <div className="flex w-[280px] shrink-0 items-center gap-2 px-4 py-2">
                       <div className="min-w-0">
                         <Link
-                          href={`/admin/projects/${project.id}/edit`}
+                          href={`/admin/operations/projects/${project.id}/edit`}
                           className="block truncate text-sm font-medium text-zinc-900 hover:underline"
                         >
                           {project.name}
@@ -237,9 +238,9 @@ export function RoadmapDashboard() {
                       )}
                     </div>
 
-                    <div className="flex w-[90px] shrink-0 flex-col justify-center px-2 py-2">
+                    <div className="flex w-[100px] shrink-0 flex-col justify-center px-2 py-2">
                       <span className="text-sm font-medium text-zinc-900">
-                        {project.endDate.slice(5)}
+                        {formatDisplayDate(project.endDate)}
                       </span>
                       <span
                         className={`text-[11px] ${daysLeft <= 30 ? "text-amber-600 font-medium" : "text-zinc-500"}`}
@@ -319,12 +320,9 @@ export function RoadmapDashboard() {
                             {t("availableNow")}
                           </span>
                         ) : (
-                          <div>
-                            <div className="text-sm font-medium text-zinc-900">
-                              {freeDate.slice(5)}
-                            </div>
-                            <div className="text-[11px] text-zinc-500">{freeDate}</div>
-                          </div>
+                          <span className="text-sm font-medium text-zinc-900">
+                            {formatDisplayDate(freeDate)}
+                          </span>
                         )}
                       </div>
 

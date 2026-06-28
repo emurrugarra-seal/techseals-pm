@@ -4,7 +4,9 @@ import { FormEvent, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/lib/auth/AuthProvider";
+import { PasswordInput } from "@/components/PasswordInput";
 import { JOB_ROLES, SENIORITIES, DEFAULT_WEEKLY_CAPACITY } from "@/lib/constants";
+import { formInputClass, formSelectClass } from "@/lib/ui";
 import type { JobRole, Seniority } from "@/lib/types";
 
 export default function NewConsultantPage() {
@@ -52,10 +54,13 @@ export default function NewConsultantPage() {
       });
 
       if (!response.ok) {
-        throw new Error(t("createError"));
+        const data = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(data?.error ?? t("createError"));
       }
 
-      router.push("/admin/consultants");
+      router.push("/admin/operations/consultants");
     } catch (submitError) {
       setError(
         submitError instanceof Error ? submitError.message : t("createError"),
@@ -79,7 +84,7 @@ export default function NewConsultantPage() {
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
-            className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className={formInputClass}
           />
         </div>
 
@@ -92,7 +97,7 @@ export default function NewConsultantPage() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className={formInputClass}
           />
         </div>
 
@@ -100,13 +105,11 @@ export default function NewConsultantPage() {
           <label className="mb-1 block text-sm font-medium text-zinc-700">
             {tCommon("password")}
           </label>
-          <input
-            type="password"
+          <PasswordInput
             required
             minLength={6}
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            onChange={setPassword}
           />
         </div>
 
@@ -118,7 +121,7 @@ export default function NewConsultantPage() {
             <select
               value={jobRole}
               onChange={(event) => setJobRole(event.target.value as JobRole)}
-              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+              className={formSelectClass}
             >
               {JOB_ROLES.map((role) => (
                 <option key={role} value={role}>
@@ -137,7 +140,7 @@ export default function NewConsultantPage() {
               onChange={(event) =>
                 setSeniority(event.target.value as Seniority)
               }
-              className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+              className={formSelectClass}
             >
               {SENIORITIES.map((level) => (
                 <option key={level} value={level}>
@@ -161,7 +164,7 @@ export default function NewConsultantPage() {
             onChange={(event) =>
               setWeeklyCapacityHours(Number(event.target.value))
             }
-            className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className={formInputClass}
           />
         </div>
 
@@ -177,7 +180,7 @@ export default function NewConsultantPage() {
           </button>
           <button
             type="button"
-            onClick={() => router.push("/admin/consultants")}
+            onClick={() => router.push("/admin/operations/consultants")}
             className="rounded-md border border-zinc-300 px-4 py-2 text-sm text-zinc-700"
           >
             {tCommon("cancel")}

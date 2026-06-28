@@ -68,7 +68,7 @@ export default function NewProjectPage() {
         createdAt: now,
         updatedAt: now,
       });
-      router.push("/admin/projects");
+      router.push("/admin/operations/projects");
     } catch {
       setError(tCommon("saveError"));
     } finally {
@@ -97,7 +97,7 @@ export default function NewProjectPage() {
           values={values}
           onChange={setValues}
           onSubmit={handleSubmit}
-          onCancel={() => router.push("/admin/projects")}
+          onCancel={() => router.push("/admin/operations/projects")}
           submitting={submitting}
           error={error}
           submitLabel={tCommon("create")}

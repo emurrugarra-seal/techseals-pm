@@ -1,5 +1,6 @@
 "use client";
 
+import { formatDisplayDate } from "@/lib/assignments/capacity";
 import { getBarPosition } from "@/lib/dashboard/roadmap";
 import type { BarPosition, TimelineRange } from "@/lib/dashboard/roadmap";
 
@@ -25,7 +26,7 @@ export function GanttBar({
     <div
       className={`absolute top-1/2 h-6 -translate-y-1/2 rounded px-1.5 text-[10px] font-medium leading-6 text-white shadow-sm truncate ${colorClass}`}
       style={{ left: `${pos.left}%`, width: `${pos.width}%`, minWidth: "4px" }}
-      title={`${label}: ${barStart} → ${barEnd}`}
+      title={`${label}: ${formatDisplayDate(barStart)} → ${formatDisplayDate(barEnd)}`}
     >
       {pos.width > 8 ? label : ""}
     </div>

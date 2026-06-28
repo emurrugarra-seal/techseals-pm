@@ -6,6 +6,11 @@ export const JOB_ROLES: JobRole[] = [
   "solution_architect",
   "project_manager",
   "business_analyst",
+  "backend_engineer",
+  "data_engineer",
+  "cloud_engineer",
+  "devops_engineer",
+  "frontend_engineer",
 ];
 
 export const SENIORITIES: Seniority[] = [

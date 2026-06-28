@@ -5,6 +5,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/firebase/client";
+import { formatDisplayDate } from "@/lib/assignments/capacity";
 import type { Client, Consultant, Project } from "@/lib/types";
 
 export default function ProjectsPage() {
@@ -65,7 +66,7 @@ export default function ProjectsPage() {
           <p className="mt-1 text-sm text-zinc-600">{t("subtitle")}</p>
         </div>
         <Link
-          href="/admin/projects/new"
+          href="/admin/operations/projects/new"
           className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
         >
           {t("addProject")}
@@ -108,8 +109,8 @@ export default function ProjectsPage() {
                   <td className="px-4 py-3">
                     {clientMap.get(project.clientId) ?? "—"}
                   </td>
-                  <td className="px-4 py-3">{project.startDate}</td>
-                  <td className="px-4 py-3">{project.endDate}</td>
+                  <td className="px-4 py-3">{formatDisplayDate(project.startDate)}</td>
+                  <td className="px-4 py-3">{formatDisplayDate(project.endDate)}</td>
                   <td className="px-4 py-3">
                     {t(`statuses.${project.status}`)}
                   </td>
@@ -123,7 +124,7 @@ export default function ProjectsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <Link
-                      href={`/admin/projects/${project.id}/edit`}
+                      href={`/admin/operations/projects/${project.id}/edit`}
                       className="text-zinc-700 underline hover:text-zinc-900"
                     >
                       {tCommon("edit")}

@@ -5,7 +5,12 @@ export type JobRole =
   | "technical_lead"
   | "solution_architect"
   | "project_manager"
-  | "business_analyst";
+  | "business_analyst"
+  | "backend_engineer"
+  | "data_engineer"
+  | "cloud_engineer"
+  | "devops_engineer"
+  | "frontend_engineer";
 
 export type Seniority =
   | "junior"

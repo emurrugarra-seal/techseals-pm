@@ -12,6 +12,13 @@ export function formatDate(date: Date): string {
   return `${y}-${m}-${d}`;
 }
 
+/** ISO `YYYY-MM-DD` → display `DD-MM-YYYY` */
+export function formatDisplayDate(iso: string): string {
+  const [y, m, d] = iso.split("-");
+  if (!y || !m || !d) return iso;
+  return `${d}-${m}-${y}`;
+}
+
 export function daysInclusive(start: Date, end: Date): number {
   const ms = end.getTime() - start.getTime();
   return Math.floor(ms / (1000 * 60 * 60 * 24)) + 1;
@@ -27,15 +34,19 @@ export function rangesOverlap(
 }
 
 export function segmentWeeklyHours(segment: AssignmentSegment): number {
-  if (segment.hoursPerWeek != null && segment.hoursPerWeek > 0) {
-    return segment.hoursPerWeek;
+  const weekly =
+    segment.hoursPerWeek != null ? Number(segment.hoursPerWeek) : NaN;
+  if (!Number.isNaN(weekly) && weekly > 0) {
+    return weekly;
   }
 
-  if (segment.totalHours != null && segment.totalHours > 0) {
+  const total =
+    segment.totalHours != null ? Number(segment.totalHours) : NaN;
+  if (!Number.isNaN(total) && total > 0) {
     const start = parseDate(segment.startDate);
     const end = parseDate(segment.endDate);
     const days = daysInclusive(start, end);
-    return segment.totalHours / Math.max(days / 7, 1 / 7);
+    return total / Math.max(days / 7, 1 / 7);
   }
 
   return 0;
@@ -62,6 +73,41 @@ export function assignmentWeeklyHoursInRange(
       sum + segmentWeeklyHoursInRange(segment, rangeStart, rangeEnd),
     0,
   );
+}
+
+/** Hours to show in the mission matrix: active segment today, or next upcoming. */
+export function assignmentDisplayWeeklyHours(
+  assignment: Assignment,
+  asOfDate: string = todayIso(),
+): number {
+  const segments = [...assignment.segments].sort((a, b) =>
+    a.startDate.localeCompare(b.startDate),
+  );
+
+  const active = segments.filter(
+    (segment) =>
+      segment.startDate <= asOfDate && segment.endDate >= asOfDate,
+  );
+  if (active.length > 0) {
+    return active.reduce(
+      (sum, segment) => sum + segmentWeeklyHours(segment),
+      0,
+    );
+  }
+
+  const upcoming = segments.find((segment) => segment.endDate >= asOfDate);
+  if (upcoming) {
+    return segmentWeeklyHours(upcoming);
+  }
+
+  return 0;
+}
+
+export function assignmentHasMission(
+  assignment: Assignment,
+  asOfDate: string = todayIso(),
+): boolean {
+  return assignment.segments.some((segment) => segment.endDate >= asOfDate);
 }
 
 export function consultantWeeklyHoursInRange(

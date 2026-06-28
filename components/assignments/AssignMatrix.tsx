@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  assignmentWeeklyHoursInRange,
+  assignmentDisplayWeeklyHours,
+  assignmentHasMission,
   findAssignment,
   todayIso,
 } from "@/lib/assignments/capacity";
@@ -46,7 +47,19 @@ export function AssignMatrix({
   function cellHours(consultantId: string, projectId: string): number {
     const assignment = findAssignment(assignments, consultantId, projectId);
     if (!assignment) return 0;
-    return assignmentWeeklyHoursInRange(assignment, today, today);
+    return assignmentDisplayWeeklyHours(assignment, today);
+  }
+
+  function cellHasUpcomingOnly(
+    consultantId: string,
+    projectId: string,
+  ): boolean {
+    const assignment = findAssignment(assignments, consultantId, projectId);
+    if (!assignment || !assignmentHasMission(assignment, today)) return false;
+    return assignmentDisplayWeeklyHours(assignment, today) > 0 &&
+      !assignment.segments.some(
+        (s) => s.startDate <= today && s.endDate >= today,
+      );
   }
 
   if (activeConsultants.length === 0 || matrixProjects.length === 0) {
@@ -98,6 +111,10 @@ export function AssignMatrix({
                   </td>
                   {matrixProjects.map((project) => {
                     const hours = cellHours(consultant.id, project.id);
+                    const upcomingOnly = cellHasUpcomingOnly(
+                      consultant.id,
+                      project.id,
+                    );
                     return (
                       <td key={project.id} className="px-2 py-2 text-center">
                         <button
@@ -107,9 +124,14 @@ export function AssignMatrix({
                           }
                           className={`w-full rounded-md border px-2 py-2 text-sm transition-colors hover:border-zinc-400 ${
                             hours > 0
-                              ? "border-zinc-300 bg-zinc-50 text-zinc-900"
+                              ? upcomingOnly
+                                ? "border-blue-200 bg-blue-50 text-blue-900"
+                                : "border-zinc-300 bg-zinc-50 text-zinc-900"
                               : "border-dashed border-zinc-200 text-zinc-400"
                           }`}
+                          title={
+                            upcomingOnly ? t("upcomingMission") : undefined
+                          }
                         >
                           {hours > 0 ? `${hours}h` : "—"}
                         </button>

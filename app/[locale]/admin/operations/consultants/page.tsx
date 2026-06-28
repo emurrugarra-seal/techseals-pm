@@ -38,7 +38,7 @@ export default function ConsultantsPage() {
           <p className="mt-1 text-sm text-zinc-600">{t("subtitle")}</p>
         </div>
         <Link
-          href="/admin/consultants/new"
+          href="/admin/operations/consultants/new"
           className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
         >
           {t("addConsultant")}

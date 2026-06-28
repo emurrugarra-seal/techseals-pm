@@ -35,7 +35,7 @@ export default function NewClientPage() {
         createdAt: now,
         updatedAt: now,
       });
-      router.push("/admin/clients");
+      router.push("/admin/operations/clients");
     } catch {
       setError(tCommon("saveError"));
     } finally {
@@ -111,7 +111,7 @@ export default function NewClientPage() {
           </button>
           <button
             type="button"
-            onClick={() => router.push("/admin/clients")}
+            onClick={() => router.push("/admin/operations/clients")}
             className="rounded-md border border-zinc-300 px-4 py-2 text-sm text-zinc-700"
           >
             {tCommon("cancel")}

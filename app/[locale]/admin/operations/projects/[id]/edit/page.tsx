@@ -50,7 +50,7 @@ export default function EditProjectPage({
       ]);
 
       if (!projectSnap.exists()) {
-        router.replace("/admin/projects");
+        router.replace("/admin/operations/projects");
         return;
       }
 
@@ -90,7 +90,7 @@ export default function EditProjectPage({
         ...formValuesToFirestore(values),
         updatedAt: new Date().toISOString(),
       });
-      router.push("/admin/projects");
+      router.push("/admin/operations/projects");
     } catch {
       setError(tCommon("saveError"));
     } finally {
@@ -112,7 +112,7 @@ export default function EditProjectPage({
         values={values}
         onChange={setValues}
         onSubmit={handleSubmit}
-        onCancel={() => router.push("/admin/projects")}
+        onCancel={() => router.push("/admin/operations/projects")}
         submitting={submitting}
         error={error}
         submitLabel={tCommon("save")}

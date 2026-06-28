@@ -38,7 +38,7 @@ export default function ClientsPage() {
           <p className="mt-1 text-sm text-zinc-600">{t("subtitle")}</p>
         </div>
         <Link
-          href="/admin/clients/new"
+          href="/admin/operations/clients/new"
           className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
         >
           {t("addClient")}
@@ -90,7 +90,7 @@ export default function ClientsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <Link
-                      href={`/admin/clients/${client.id}/edit`}
+                      href={`/admin/operations/clients/${client.id}/edit`}
                       className="text-zinc-700 underline hover:text-zinc-900"
                     >
                       {tCommon("edit")}

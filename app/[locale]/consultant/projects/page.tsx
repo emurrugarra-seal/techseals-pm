@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { RequireAuth } from "@/components/RequireAuth";
 import { useAuth } from "@/lib/auth/AuthProvider";
+import { formatDisplayDate } from "@/lib/assignments/capacity";
 import { db } from "@/lib/firebase/client";
 import type { Assignment, Client, Project } from "@/lib/types";
 
@@ -81,7 +82,7 @@ function ConsultantProjectsContent() {
           clientName,
           currentHours:
             activeSegment.hoursPerWeek ?? activeSegment.totalHours ?? 0,
-          periodLabel: `${activeSegment.startDate} → ${activeSegment.endDate}`,
+          periodLabel: `${formatDisplayDate(activeSegment.startDate)} → ${formatDisplayDate(activeSegment.endDate)}`,
         });
       }
 
