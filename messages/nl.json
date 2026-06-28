@@ -14,7 +14,14 @@
     "password": "Wachtwoord",
     "name": "Naam",
     "signOut": "Uitloggen",
-    "language": "Taal"
+    "language": "Taal",
+    "phone": "Telefoon",
+    "notes": "Notities",
+    "status": "Status",
+    "saving": "Opslaan...",
+    "saveError": "Opslaan mislukt. Probeer het opnieuw.",
+    "yes": "Ja",
+    "no": "Nee"
   },
   "auth": {
     "loginTitle": "Inloggen bij TechSeals PM",
@@ -39,13 +46,21 @@
     "unassignedProjects": "Actieve projecten zonder consultants",
     "noEndingSoon": "Geen projecten die binnen 90 dagen eindigen",
     "noOverCapacity": "Alle consultants binnen capaciteit",
-    "noUnassigned": "Alle actieve projecten hebben consultants"
+    "noUnassigned": "Alle actieve projecten hebben consultants",
+    "loading": "Dashboard laden...",
+    "thisWeek": "deze week"
   },
   "clients": {
     "title": "Klanten",
     "subtitle": "Beheer uw klantenportfolio",
     "addClient": "Klant toevoegen",
-    "comingSoon": "Klantenbeheer komt in de volgende iteratie."
+    "createTitle": "Klant aanmaken",
+    "editTitle": "Klant bewerken",
+    "noClients": "Nog geen klanten",
+    "contactEmail": "Contact e-mail",
+    "contactPhone": "Contact telefoon",
+    "deactivate": "Deactiveren",
+    "activate": "Activeren"
   },
   "consultants": {
     "title": "Consultants",
@@ -79,14 +94,65 @@
     "title": "Projecten",
     "subtitle": "Volg projecttijdlijnen en status",
     "addProject": "Project toevoegen",
-    "comingSoon": "Projectbeheer komt in de volgende iteratie."
+    "createTitle": "Project aanmaken",
+    "editTitle": "Project bewerken",
+    "noProjects": "Nog geen projecten",
+    "noClientsHint": "Maak minstens één klant aan voordat u een project toevoegt.",
+    "client": "Klant",
+    "description": "Beschrijving",
+    "startDate": "Startdatum",
+    "endDate": "Einddatum",
+    "actualEndDate": "Werkelijke einddatum",
+    "priority": "Prioriteit",
+    "projectType": "Projecttype",
+    "leadConsultant": "Lead consultant",
+    "internalNotes": "Interne notities",
+    "none": "Geen",
+    "priorities": {
+      "low": "Laag",
+      "medium": "Gemiddeld",
+      "high": "Hoog"
+    },
+    "statuses": {
+      "planned": "Gepland",
+      "active": "Actief",
+      "paused": "Gepauzeerd",
+      "completed": "Afgerond",
+      "cancelled": "Geannuleerd"
+    },
+    "types": {
+      "audit": "Audit",
+      "implementation": "Implementatie",
+      "advisory": "Advies",
+      "support": "Support",
+      "other": "Overig"
+    }
   },
   "assignments": {
     "title": "Toewijzingen",
     "subtitle": "Plan consultanttoewijzingen over projecten",
     "assignTab": "Toewijzen",
     "capacityTab": "Capaciteit",
-    "comingSoon": "Toewijzingsmatrix komt in de volgende iteratie."
+    "consultant": "Consultant",
+    "total": "Totaal",
+    "weekShort": "wk",
+    "assignHint": "Klik op een cel om uren in te stellen. Voeg segmenten toe voor wijzigingen midden in een project.",
+    "assignFootnote": "Toont huidige wekelijkse uren (vandaag). Gebruik segmenten voor datumbereiken en korte periodes.",
+    "capacityHint": "Gemiddelde wekelijkse uren per maand. Kleuren vergelijken met de capaciteit van elke consultant.",
+    "capacityFootnote": "Uren van overlappende segmenten worden opgeteld. Korte periodes (totaal uren) worden omgerekend naar een weektarief.",
+    "capacityEmpty": "Voeg actieve consultants toe om capaciteitsplanning te zien.",
+    "matrixEmpty": "Voeg actieve consultants en geplande/actieve projecten toe om de matrix te gebruiken.",
+    "editAssignment": "Toewijzing bewerken",
+    "segment": "Segment",
+    "segmentStart": "Startdatum",
+    "segmentEnd": "Einddatum",
+    "allocationType": "Toewijzingstype",
+    "hoursPerWeek": "Uren per week",
+    "totalHours": "Totaal uren",
+    "addSegment": "+ Segment toevoegen",
+    "underCapacity": "Onder 80%",
+    "nearCapacity": "80–100%",
+    "overCapacity": "Boven capaciteit"
   },
   "consultantPortal": {
     "title": "Mijn projecten",

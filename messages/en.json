@@ -14,7 +14,14 @@
     "password": "Password",
     "name": "Name",
     "signOut": "Sign out",
-    "language": "Language"
+    "language": "Language",
+    "phone": "Phone",
+    "notes": "Notes",
+    "status": "Status",
+    "saving": "Saving...",
+    "saveError": "Failed to save. Please try again.",
+    "yes": "Yes",
+    "no": "No"
   },
   "auth": {
     "loginTitle": "Sign in to TechSeals PM",
@@ -39,13 +46,21 @@
     "unassignedProjects": "Active projects without consultants",
     "noEndingSoon": "No projects ending in the next 90 days",
     "noOverCapacity": "All consultants within capacity",
-    "noUnassigned": "All active projects have consultants"
+    "noUnassigned": "All active projects have consultants",
+    "loading": "Loading dashboard...",
+    "thisWeek": "this week"
   },
   "clients": {
     "title": "Clients",
     "subtitle": "Manage your client portfolio",
     "addClient": "Add client",
-    "comingSoon": "Client management coming in the next iteration."
+    "createTitle": "Create client",
+    "editTitle": "Edit client",
+    "noClients": "No clients yet",
+    "contactEmail": "Contact email",
+    "contactPhone": "Contact phone",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
   },
   "consultants": {
     "title": "Consultants",
@@ -79,14 +94,65 @@
     "title": "Projects",
     "subtitle": "Track project timelines and status",
     "addProject": "Add project",
-    "comingSoon": "Project management coming in the next iteration."
+    "createTitle": "Create project",
+    "editTitle": "Edit project",
+    "noProjects": "No projects yet",
+    "noClientsHint": "Create at least one client before adding a project.",
+    "client": "Client",
+    "description": "Description",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "actualEndDate": "Actual end date",
+    "priority": "Priority",
+    "projectType": "Project type",
+    "leadConsultant": "Lead consultant",
+    "internalNotes": "Internal notes",
+    "none": "None",
+    "priorities": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "statuses": {
+      "planned": "Planned",
+      "active": "Active",
+      "paused": "Paused",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "audit": "Audit",
+      "implementation": "Implementation",
+      "advisory": "Advisory",
+      "support": "Support",
+      "other": "Other"
+    }
   },
   "assignments": {
     "title": "Assignments",
     "subtitle": "Plan consultant allocations across projects",
     "assignTab": "Assign",
     "capacityTab": "Capacity",
-    "comingSoon": "Assignment matrix coming in the next iteration."
+    "consultant": "Consultant",
+    "total": "Total",
+    "weekShort": "wk",
+    "assignHint": "Click a cell to set hours for a consultant on a project. Add multiple segments for mid-project changes.",
+    "assignFootnote": "Shows current weekly hours (today). Use segments for date ranges and short stints.",
+    "capacityHint": "Average weekly hours assigned per month. Colors compare to each consultant's capacity.",
+    "capacityFootnote": "Hours from overlapping segments are summed. Short stints (total hours) are converted to a weekly rate.",
+    "capacityEmpty": "Add active consultants to see capacity planning.",
+    "matrixEmpty": "Add active consultants and planned/active projects to use the assignment matrix.",
+    "editAssignment": "Edit assignment",
+    "segment": "Segment",
+    "segmentStart": "Start date",
+    "segmentEnd": "End date",
+    "allocationType": "Allocation type",
+    "hoursPerWeek": "Hours per week",
+    "totalHours": "Total hours",
+    "addSegment": "+ Add segment",
+    "underCapacity": "Under 80%",
+    "nearCapacity": "80–100%",
+    "overCapacity": "Over capacity"
   },
   "consultantPortal": {
     "title": "My Projects",

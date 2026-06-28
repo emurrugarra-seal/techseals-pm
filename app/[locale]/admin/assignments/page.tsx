@@ -1,13 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 import { useTranslations } from "next-intl";
+import { AssignMatrix } from "@/components/assignments/AssignMatrix";
+import { CapacityMatrix } from "@/components/assignments/CapacityMatrix";
+import { db } from "@/lib/firebase/client";
+import type { Assignment, Consultant, Project } from "@/lib/types";
 
 type AssignmentTab = "assign" | "capacity";
 
 export default function AssignmentsPage() {
   const t = useTranslations("assignments");
+  const tCommon = useTranslations("common");
   const [tab, setTab] = useState<AssignmentTab>("assign");
+  const [consultants, setConsultants] = useState<Consultant[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadData = useCallback(async () => {
+    const [consultantsSnap, projectsSnap, assignmentsSnap] = await Promise.all([
+      getDocs(collection(db, "consultants")),
+      getDocs(collection(db, "projects")),
+      getDocs(collection(db, "assignments")),
+    ]);
+
+    setConsultants(
+      consultantsSnap.docs
+        .map((d) => ({ id: d.id, ...(d.data() as Omit<Consultant, "id">) }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    );
+    setProjects(
+      projectsSnap.docs
+        .map((d) => ({ id: d.id, ...(d.data() as Omit<Project, "id">) }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    );
+    setAssignments(
+      assignmentsSnap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as Omit<Assignment, "id">),
+      })),
+    );
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   return (
     <div>
@@ -39,9 +79,18 @@ export default function AssignmentsPage() {
         </button>
       </div>
 
-      <p className="mt-6 rounded-lg border border-dashed border-zinc-300 bg-white p-6 text-sm text-zinc-500">
-        {t("comingSoon")} ({tab === "assign" ? t("assignTab") : t("capacityTab")})
-      </p>
+      {loading ? (
+        <p className="mt-6 text-sm text-zinc-500">{tCommon("loading")}</p>
+      ) : tab === "assign" ? (
+        <AssignMatrix
+          consultants={consultants}
+          projects={projects}
+          assignments={assignments}
+          onRefresh={loadData}
+        />
+      ) : (
+        <CapacityMatrix consultants={consultants} assignments={assignments} />
+      )}
     </div>
   );
 }

@@ -31,3 +31,11 @@ export const PROJECT_PRIORITIES: ProjectPriority[] = [
 ];
 
 export const DEFAULT_WEEKLY_CAPACITY = 40;
+
+export const PROJECT_TYPES = [
+  "audit",
+  "implementation",
+  "advisory",
+  "support",
+  "other",
+] as const;

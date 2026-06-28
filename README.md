@@ -2,11 +2,14 @@
 
 Consulting project and capacity management built with **Next.js**, **Firebase Auth**, **Firestore**, and **Firebase App Hosting**.
 
-## Features (current scaffold)
+## Features (current)
 
 - Email/password authentication (admin + consultant roles)
 - i18n: English (default) + Dutch
-- Admin: dashboard shell, consultant CRUD with **job role**, **seniority**, weekly capacity
+- Admin: dashboard shell, consultant CRUD with job role + seniority
+- Admin: **clients CRUD** (create, list, edit, activate/deactivate)
+- Admin: **assignments matrix** (Assign + Capacity tabs, segments support)
+- Admin: **dashboard** with live metrics (ending soon, over capacity, unassigned)
 - Consultant: read-only view of active project assignments
 - Firestore security rules (role-based)
 - Firebase App Hosting config (`apphosting.yaml`)
@@ -68,6 +71,5 @@ Docs: [Firebase App Hosting](https://firebase.google.com/docs/app-hosting/get-st
 
 ## Next iterations
 
-- Clients & projects CRUD
-- Assignment matrix (Assign + Capacity tabs)
-- Dashboard metrics from live Firestore data
+- Polish assignment UX (inline edit, drag timeline)
+- Firestore composite indexes if needed at scale
