@@ -48,6 +48,41 @@ npx tsx scripts/create-admin.ts admin@yourcompany.com YourSecurePassword "Admin 
 firebase deploy --only firestore:rules --project techseals-pm
 ```
 
+### Clear or reset the database (development)
+
+Set the service account first:
+
+```bash
+export FIREBASE_SERVICE_ACCOUNT_KEY="$(cat workspace/your-service-account.json)"
+```
+
+**Clear business data** (assignments, projects, clients, consultants — keeps Auth users):
+
+```bash
+npx tsx scripts/clear-database.ts --confirm
+# or: npm run db:clear
+```
+
+**Clear everything including Auth** (Firestore + login accounts):
+
+```bash
+npx tsx scripts/clear-database.ts --confirm --with-users --with-auth
+```
+
+**Full reset** (all collections + all Auth users):
+
+```bash
+npx tsx scripts/reset-total.ts --confirm RESET
+# or: npm run db:reset
+```
+
+**Full reset + recreate admin immediately**:
+
+```bash
+npx tsx scripts/reset-total.ts --confirm RESET admin@yourcompany.com "YourPassword" "Admin Name"
+```
+
+
 ## Firebase App Hosting deploy
 
 App Hosting deploys from **GitHub** (not local CLI upload).

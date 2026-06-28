@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { DashboardWidgets } from "@/components/DashboardWidgets";
+import { RoadmapDashboard } from "@/components/dashboard/RoadmapDashboard";
 
 export default async function AdminDashboardPage() {
   const t = await getTranslations("dashboard");
@@ -7,7 +7,8 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <h1 className="text-2xl font-semibold text-zinc-900">{t("title")}</h1>
-      <DashboardWidgets />
+      <p className="mt-1 text-sm text-zinc-600">{t("subtitle")}</p>
+      <RoadmapDashboard />
     </div>
   );
 }
