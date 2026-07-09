@@ -23,15 +23,23 @@ export interface TimelineSegment {
 }
 
 export function getDefaultTimelineRange(): TimelineRange {
+  return getTimelineRange(0);
+}
+
+/** Jan 1 of current year through Dec 31 of `currentYear + extraYears`. */
+export function getTimelineRange(extraYears = 0): TimelineRange {
   const now = new Date();
   const startDate = new Date(now.getFullYear(), 0, 1);
-  const endDate = new Date(now.getFullYear(), 11, 31);
+  const endDate = new Date(now.getFullYear() + extraYears, 11, 31);
   const start = formatDate(startDate);
   const end = formatDate(endDate);
   const totalDays =
     Math.floor((endDate.getTime() - startDate.getTime()) / 86400000) + 1;
   return { start, end, startDate, endDate, totalDays };
 }
+
+export const TIMELINE_HORIZON_OPTIONS = [0, 1, 2, 3] as const;
+export type TimelineHorizon = (typeof TIMELINE_HORIZON_OPTIONS)[number];
 
 export function getBarPosition(
   barStart: string,

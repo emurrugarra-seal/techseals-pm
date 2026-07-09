@@ -9,22 +9,25 @@ import { GanttBar, GanttTrack, TimelineHeader } from "@/components/dashboard/Gan
 import {
   consultantWeeklyHoursInRange,
   formatDisplayDate,
-  getYearMonths,
+  getMonthsInRange,
   todayIso,
 } from "@/lib/assignments/capacity";
 import {
   getConsultantFreeDate,
   getConsultantTimelineSegments,
-  getDefaultTimelineRange,
   getMonthMarkers,
   getProjectAssigneeIds,
+  getTimelineRange,
   getTodayMarkerLeft,
   initials,
   projectStatusBadge,
   projectStatusColor,
   sortProjectsForRoadmap,
+  TIMELINE_HORIZON_OPTIONS,
+  type TimelineHorizon,
 } from "@/lib/dashboard/roadmap";
 import { db } from "@/lib/firebase/client";
+import { formSelectClass } from "@/lib/ui";
 import type { Assignment, Client, Consultant, Project } from "@/lib/types";
 
 export function RoadmapDashboard() {
@@ -37,6 +40,7 @@ export function RoadmapDashboard() {
   const [consultants, setConsultants] = useState<Consultant[]>([]);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [loading, setLoading] = useState(true);
+  const [horizon, setHorizon] = useState<TimelineHorizon>(0);
 
   useEffect(() => {
     async function load() {
@@ -78,13 +82,14 @@ export function RoadmapDashboard() {
     load();
   }, []);
 
-  const range = useMemo(() => getDefaultTimelineRange(), []);
+  const range = useMemo(() => getTimelineRange(horizon), [horizon]);
   const monthMarkers = useMemo(() => getMonthMarkers(range), [range]);
   const todayLeft = useMemo(() => getTodayMarkerLeft(range), [range]);
   const capacityMonths = useMemo(
-    () => getYearMonths(range.startDate.getFullYear()),
+    () => getMonthsInRange(range.start, range.end),
     [range],
   );
+  const currentYear = new Date().getFullYear();
   const today = todayIso();
 
   const clientMap = useMemo(
@@ -162,6 +167,36 @@ export function RoadmapDashboard() {
             alert
           />
         )}
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white px-4 py-3">
+        <div>
+          <p className="text-sm font-medium text-zinc-900">{t("rangeLabel")}</p>
+          <p className="text-xs text-zinc-500">
+            {formatDisplayDate(range.start)} – {formatDisplayDate(range.end)}
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <label htmlFor="timeline-horizon" className="text-sm text-zinc-600">
+            {t("rangeThrough")}
+          </label>
+          <select
+            id="timeline-horizon"
+            value={horizon}
+            onChange={(event) =>
+              setHorizon(Number(event.target.value) as TimelineHorizon)
+            }
+            className={formSelectClass}
+          >
+            {TIMELINE_HORIZON_OPTIONS.map((yearsAhead) => (
+              <option key={yearsAhead} value={yearsAhead}>
+                {yearsAhead === 0
+                  ? t("rangeThisYear", { year: currentYear })
+                  : t("rangeThroughYear", { year: currentYear + yearsAhead })}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Projects roadmap */}

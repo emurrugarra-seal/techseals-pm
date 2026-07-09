@@ -71,7 +71,11 @@
     "noAssignments": "No missions",
     "assignmentCount": "{count} active missions",
     "daysLeft": "{days}d left",
-    "ended": "Ended"
+    "ended": "Ended",
+    "rangeLabel": "Planning horizon",
+    "rangeThrough": "View through",
+    "rangeThisYear": "{year} only",
+    "rangeThroughYear": "Dec {year}"
   },
   "clients": {
     "title": "Clients",

@@ -71,7 +71,11 @@
     "noAssignments": "Geen missies",
     "assignmentCount": "{count} actieve missies",
     "daysLeft": "{days}d resterend",
-    "ended": "Beëindigd"
+    "ended": "Beëindigd",
+    "rangeLabel": "Planningshorizon",
+    "rangeThrough": "Bekijk t/m",
+    "rangeThisYear": "Alleen {year}",
+    "rangeThroughYear": "Dec {year}"
   },
   "clients": {
     "title": "Klanten",

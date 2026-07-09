@@ -159,15 +159,29 @@ export function getUpcomingMonths(count: number): MonthColumn[] {
 export function getYearMonths(
   year: number = new Date().getFullYear(),
 ): MonthColumn[] {
-  const result: { year: number; month: number; label: string }[] = [];
+  const start = formatDate(new Date(year, 0, 1));
+  const end = formatDate(new Date(year, 11, 31));
+  return getMonthsInRange(start, end);
+}
 
-  for (let month = 1; month <= 12; month++) {
-    const date = new Date(year, month - 1, 1);
+export function getMonthsInRange(startIso: string, endIso: string): MonthColumn[] {
+  const start = parseDate(startIso);
+  const end = parseDate(endIso);
+  const cursor = new Date(start.getFullYear(), start.getMonth(), 1);
+  const result: MonthColumn[] = [];
+  const spansMultipleYears = end.getFullYear() > start.getFullYear();
+
+  while (cursor <= end) {
+    const year = cursor.getFullYear();
+    const month = cursor.getMonth() + 1;
     result.push({
       year,
       month,
-      label: date.toLocaleDateString("en", { month: "short" }),
+      label: spansMultipleYears
+        ? cursor.toLocaleDateString("en", { month: "short", year: "2-digit" })
+        : cursor.toLocaleDateString("en", { month: "short" }),
     });
+    cursor.setMonth(cursor.getMonth() + 1);
   }
 
   return result;
