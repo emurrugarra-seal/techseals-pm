@@ -97,6 +97,11 @@
     "creating": "Creating...",
     "createSuccess": "Consultant created successfully",
     "createError": "Failed to create consultant",
+    "editTitle": "Edit consultant",
+    "editSubtitle": "Update profile, capacity, or account settings",
+    "updateError": "Failed to update consultant",
+    "newPassword": "New password",
+    "passwordHint": "Leave blank to keep the current password",
     "emailAlreadyExists": "This email is already registered",
     "noConsultants": "No consultants yet",
     "roles": {

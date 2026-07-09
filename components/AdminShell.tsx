@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useAuth } from "@/lib/auth/AuthProvider";
@@ -25,7 +26,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <header className="border-b border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-4 py-3">
           <div className="flex items-center gap-6">
-            <span className="font-semibold text-zinc-900">{tCommon("appName")}</span>
+            <Link href="/admin/dashboard" className="flex shrink-0 items-center">
+              <Image
+                src="/logo.png"
+                alt={tCommon("appName")}
+                width={160}
+                height={48}
+                className="h-9 w-auto"
+                priority
+              />
+            </Link>
 
             <nav className="flex items-center gap-1">
               {mainTabs.map((tab) => {

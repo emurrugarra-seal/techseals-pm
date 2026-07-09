@@ -102,3 +102,13 @@ export interface CreateConsultantInput {
   seniority: Seniority;
   weeklyCapacityHours: number;
 }
+
+export interface UpdateConsultantInput {
+  name: string;
+  email: string;
+  password?: string;
+  jobRole: JobRole;
+  seniority: Seniority;
+  weeklyCapacityHours: number;
+  active: boolean;
+}

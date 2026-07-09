@@ -54,25 +54,29 @@ export default function ConsultantsPage() {
               <th className="px-4 py-3 font-medium">{t("jobRole")}</th>
               <th className="px-4 py-3 font-medium">{t("seniority")}</th>
               <th className="px-4 py-3 font-medium">{t("weeklyCapacity")}</th>
+              <th className="px-4 py-3 font-medium">{tCommon("status")}</th>
+              <th className="px-4 py-3 font-medium">{tCommon("actions")}</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5} className="px-4 py-6 text-zinc-500">
+                <td colSpan={7} className="px-4 py-6 text-zinc-500">
                   {tCommon("loading")}
                 </td>
               </tr>
             ) : consultants.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-6 text-zinc-500">
+                <td colSpan={7} className="px-4 py-6 text-zinc-500">
                   {t("noConsultants")}
                 </td>
               </tr>
             ) : (
               consultants.map((consultant) => (
                 <tr key={consultant.id} className="border-t border-zinc-100">
-                  <td className="px-4 py-3">{consultant.name}</td>
+                  <td className="px-4 py-3 font-medium text-zinc-900">
+                    {consultant.name}
+                  </td>
                   <td className="px-4 py-3">{consultant.email}</td>
                   <td className="px-4 py-3">
                     {t(`roles.${consultant.jobRole}`)}
@@ -81,6 +85,25 @@ export default function ConsultantsPage() {
                     {t(`seniorities.${consultant.seniority}`)}
                   </td>
                   <td className="px-4 py-3">{consultant.weeklyCapacityHours}h</td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${
+                        consultant.active
+                          ? "bg-green-100 text-green-800"
+                          : "bg-zinc-100 text-zinc-600"
+                      }`}
+                    >
+                      {consultant.active ? tCommon("active") : tCommon("inactive")}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <Link
+                      href={`/admin/operations/consultants/${consultant.id}/edit`}
+                      className="text-zinc-700 underline hover:text-zinc-900"
+                    >
+                      {tCommon("edit")}
+                    </Link>
+                  </td>
                 </tr>
               ))
             )}

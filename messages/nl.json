@@ -97,6 +97,11 @@
     "creating": "Bezig met aanmaken...",
     "createSuccess": "Consultant succesvol aangemaakt",
     "createError": "Consultant aanmaken mislukt",
+    "editTitle": "Consultant bewerken",
+    "editSubtitle": "Profiel, capaciteit of accountinstellingen bijwerken",
+    "updateError": "Consultant bijwerken mislukt",
+    "newPassword": "Nieuw wachtwoord",
+    "passwordHint": "Laat leeg om het huidige wachtwoord te behouden",
     "noConsultants": "Nog geen consultants",
     "roles": {
       "consultant": "Consultant",
