@@ -210,6 +210,7 @@ export function RoadmapDashboard() {
           <div className="min-w-[900px]">
             {/* Header row */}
             <div className="flex border-b border-zinc-200 bg-zinc-50 text-xs font-medium text-zinc-500">
+              <div className="w-[60px] shrink-0 px-4 py-2">#</div>
               <div className="w-[280px] shrink-0 px-4 py-2">{t("colWork")}</div>
               <div className="w-[100px] shrink-0 px-2 py-2">{tCommon("status")}</div>
               <div className="w-[100px] shrink-0 px-2 py-2">{t("colAssignees")}</div>
@@ -225,7 +226,7 @@ export function RoadmapDashboard() {
                 </Link>
               </div>
             ) : (
-              roadmapProjects.map((project) => {
+              roadmapProjects.map((project, index) => {
                 const assigneeIds = getProjectAssigneeIds(project.id, assignments);
                 const daysLeft = Math.ceil(
                   (parseDate(project.endDate).getTime() - parseDate(today).getTime()) /
@@ -237,6 +238,9 @@ export function RoadmapDashboard() {
                     key={project.id}
                     className="flex border-b border-zinc-100 hover:bg-zinc-50/80"
                   >
+                    <div className="flex w-[60px] shrink-0 items-center px-4 py-2 text-sm text-zinc-500">
+                      {index + 1}
+                    </div>
                     <div className="flex w-[280px] shrink-0 items-center gap-2 px-4 py-2">
                       <div className="min-w-0">
                         <Link
@@ -317,6 +321,7 @@ export function RoadmapDashboard() {
         <div className="overflow-x-auto">
           <div className="min-w-[900px]">
             <div className="flex border-b border-zinc-200 bg-zinc-50 text-xs font-medium text-zinc-500">
+              <div className="w-[60px] shrink-0 px-4 py-2">#</div>
               <div className="w-[200px] shrink-0 px-4 py-2">{t("colConsultant")}</div>
               <div className="w-[80px] shrink-0 px-2 py-2">{t("colLoad")}</div>
               <div className="w-[110px] shrink-0 px-2 py-2">{t("colFreeFrom")}</div>
@@ -328,13 +333,16 @@ export function RoadmapDashboard() {
               <div className="px-4 py-8 text-sm text-zinc-500">{t("noConsultants")}</div>
             ) : (
               sortedConsultants.map(
-                ({ consultant, freeDate, hours, segments }) => {
+                ({ consultant, freeDate, hours, segments }, index) => {
                   const overCapacity = hours > consultant.weeklyCapacityHours;
                   return (
                     <div
                       key={consultant.id}
                       className="flex border-b border-zinc-100 hover:bg-zinc-50/80"
                     >
+                      <div className="flex w-[60px] shrink-0 items-center px-4 py-2 text-sm text-zinc-500">
+                        {index + 1}
+                      </div>
                       <div className="flex w-[200px] shrink-0 items-center gap-2 px-4 py-2">
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-[11px] font-semibold text-indigo-700">
                           {initials(consultant.name)}

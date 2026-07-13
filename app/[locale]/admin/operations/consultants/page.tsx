@@ -49,6 +49,7 @@ export default function ConsultantsPage() {
         <table className="min-w-full text-sm">
           <thead className="bg-zinc-50 text-left text-zinc-600">
             <tr>
+              <th className="px-4 py-3 font-medium w-[60px]">#</th>
               <th className="px-4 py-3 font-medium">{tCommon("name")}</th>
               <th className="px-4 py-3 font-medium">{tCommon("email")}</th>
               <th className="px-4 py-3 font-medium">{t("jobRole")}</th>
@@ -61,19 +62,20 @@ export default function ConsultantsPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={7} className="px-4 py-6 text-zinc-500">
+                <td colSpan={8} className="px-4 py-6 text-zinc-500">
                   {tCommon("loading")}
                 </td>
               </tr>
             ) : consultants.length === 0 ? (
               <tr>
-                <td colSpan={7} className="px-4 py-6 text-zinc-500">
+                <td colSpan={8} className="px-4 py-6 text-zinc-500">
                   {t("noConsultants")}
                 </td>
               </tr>
             ) : (
-              consultants.map((consultant) => (
+              consultants.map((consultant, index) => (
                 <tr key={consultant.id} className="border-t border-zinc-100">
+                  <td className="px-4 py-3 text-zinc-500">{index + 1}</td>
                   <td className="px-4 py-3 font-medium text-zinc-900">
                     {consultant.name}
                   </td>

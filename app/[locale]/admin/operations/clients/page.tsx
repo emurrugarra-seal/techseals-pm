@@ -49,6 +49,7 @@ export default function ClientsPage() {
         <table className="min-w-full text-sm">
           <thead className="bg-zinc-50 text-left text-zinc-600">
             <tr>
+              <th className="px-4 py-3 font-medium w-[60px]">#</th>
               <th className="px-4 py-3 font-medium">{tCommon("name")}</th>
               <th className="px-4 py-3 font-medium">{t("contactEmail")}</th>
               <th className="px-4 py-3 font-medium">{t("contactPhone")}</th>
@@ -59,19 +60,20 @@ export default function ClientsPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5} className="px-4 py-6 text-zinc-500">
+                <td colSpan={6} className="px-4 py-6 text-zinc-500">
                   {tCommon("loading")}
                 </td>
               </tr>
             ) : clients.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-6 text-zinc-500">
+                <td colSpan={6} className="px-4 py-6 text-zinc-500">
                   {t("noClients")}
                 </td>
               </tr>
             ) : (
-              clients.map((client) => (
+              clients.map((client, index) => (
                 <tr key={client.id} className="border-t border-zinc-100">
+                  <td className="px-4 py-3 text-zinc-500">{index + 1}</td>
                   <td className="px-4 py-3 font-medium text-zinc-900">
                     {client.name}
                   </td>

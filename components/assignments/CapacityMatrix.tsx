@@ -88,7 +88,10 @@ export function CapacityMatrix({
         >
           <thead className="bg-zinc-50 text-left text-zinc-600">
             <tr>
-              <th className="sticky left-0 z-10 bg-zinc-50 px-4 py-3 font-medium min-w-[160px]">
+              <th className="sticky left-0 z-10 bg-zinc-50 px-4 py-3 font-medium w-[60px]">
+                #
+              </th>
+              <th className="sticky left-[60px] z-10 bg-zinc-50 px-4 py-3 font-medium min-w-[160px]">
                 {t("consultant")}
               </th>
               {months.map((m) => (
@@ -99,9 +102,12 @@ export function CapacityMatrix({
             </tr>
           </thead>
           <tbody>
-            {activeConsultants.map((consultant) => (
+            {activeConsultants.map((consultant, index) => (
               <tr key={consultant.id} className="border-t border-zinc-100">
-                <td className="sticky left-0 z-10 bg-white px-4 py-2 font-medium text-zinc-900">
+                <td className="sticky left-0 z-10 bg-white px-4 py-2 text-zinc-500">
+                  {index + 1}
+                </td>
+                <td className="sticky left-[60px] z-10 bg-white px-4 py-2 font-medium text-zinc-900">
                   <div>{consultant.name}</div>
                   <div className="text-xs font-normal text-zinc-500">
                     {consultant.weeklyCapacityHours}h/{t("weekShort")}

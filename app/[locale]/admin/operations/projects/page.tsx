@@ -77,6 +77,7 @@ export default function ProjectsPage() {
         <table className="min-w-full text-sm">
           <thead className="bg-zinc-50 text-left text-zinc-600">
             <tr>
+              <th className="px-4 py-3 font-medium w-[60px]">#</th>
               <th className="px-4 py-3 font-medium">{tCommon("name")}</th>
               <th className="px-4 py-3 font-medium">{t("client")}</th>
               <th className="px-4 py-3 font-medium">{t("startDate")}</th>
@@ -90,19 +91,20 @@ export default function ProjectsPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={8} className="px-4 py-6 text-zinc-500">
+                <td colSpan={9} className="px-4 py-6 text-zinc-500">
                   {tCommon("loading")}
                 </td>
               </tr>
             ) : projects.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-4 py-6 text-zinc-500">
+                <td colSpan={9} className="px-4 py-6 text-zinc-500">
                   {t("noProjects")}
                 </td>
               </tr>
             ) : (
-              projects.map((project) => (
+              projects.map((project, index) => (
                 <tr key={project.id} className="border-t border-zinc-100">
+                  <td className="px-4 py-3 text-zinc-500">{index + 1}</td>
                   <td className="px-4 py-3 font-medium text-zinc-900">
                     {project.name}
                   </td>
